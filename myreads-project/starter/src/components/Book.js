@@ -10,7 +10,7 @@ const Book = ({ book, onChangeShelf }) => {
                     style={{
                         width: 128,
                         height: 193,
-                        backgroundImage: `url(${book.link})`,
+                        backgroundImage: `url(${book.imageLinks?.thumbnail || ""})`,
                     }}
                 ></div>
                 <BookShelfChanger
@@ -26,7 +26,7 @@ const Book = ({ book, onChangeShelf }) => {
 
 Book.propTypes = {
     book: PropTypes.shape({
-        link: PropTypes.string,
+        imageLinks: PropTypes.string,
         title: PropTypes.string,
         authors: PropTypes.array,
         shelf: PropTypes.string,
