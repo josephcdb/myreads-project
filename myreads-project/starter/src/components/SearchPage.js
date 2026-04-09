@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Book from './Book';
 import * as BooksAPI from "../BooksAPI";
@@ -6,6 +7,7 @@ import * as BooksAPI from "../BooksAPI";
 const SearchPage = ({ onChangeShelf, myBooks }) => {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
+    const navigate = useNavigate();
 
     // Update the shelf of a book in the search results based on the user's existing books
     const updateBookShelf = (book) => {
@@ -35,7 +37,7 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
     return (
         <div className="search-books">
             <div className="search-books-bar">
-                <button className="close-search" onClick={() => window.history.back()}>
+                <button className="close-search" onClick={() => navigate("/")}>
                     Close
                 </button>
                 <div className="search-books-input-wrapper">
