@@ -2,19 +2,19 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [showSearchPage, setShowSearchpage] = useState(false);
+  const [showSearchPage, setShowSearchPage] = useState(false);
 
   return (
     <div className="app">
       {showSearchPage ? (
         <div className="search-books">
           <div className="search-books-bar">
-            <a
+            <button
               className="close-search"
-              onClick={() => setShowSearchpage(!showSearchPage)}
+              onClick={() => setShowSearchPage(!showSearchPage)}
             >
               Close
-            </a>
+            </button>
             <div className="search-books-input-wrapper">
               <input
                 type="text"
@@ -273,7 +273,7 @@ function App() {
             </div>
           </div>
           <div className="open-search">
-            <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
+            <button onClick={() => setShowSearchPage(!showSearchPage)}>Add a book</button>
           </div>
         </div>
       )}
