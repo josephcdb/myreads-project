@@ -1,33 +1,26 @@
 import PropTypes from 'prop-types';
 import BookShelfChanger from "./BookShelfChanger";
 
-const Book = ({ book }) => {
+const Book = ({ book, onChangeShelf }) => {
     return (
-        <li>
-            <div className="book">
-                <div className="book-top">
-                    <div
-                        className="book-cover"
-                        style={{
-                            width: `${book.width}`,
-                            height: `${book.height}`,
-                            backgroundImage: `url(${book.link})`,
-                        }}
-                    ></div>
-                    <div className="book-shelf-changer">
-                        <BookShelfChanger
-                            currentShelf={book.shelf}
-                            onChange={(newShelf) => {
-                                // Handle shelf
-                                book.shelf = newShelf;
-                            }}
-                        />
-                    </div>
-                </div>
-                <div className="book-title">{book.title}</div>
-                <div className="book-authors">{book.authors}</div>
+        <div className="book">
+            <div className="book-top">
+                <div
+                    className="book-cover"
+                    style={{
+                        width: 128,
+                        height: 193,
+                        backgroundImage: `url(${book.link})`,
+                    }}
+                ></div>
+                <BookShelfChanger
+                    currentShelf={book.shelf}
+                    onChange={(newShelf) => onChangeShelf(book, newShelf)}
+                />
             </div>
-        </li>
+            <div className="book-title">{book.title}</div>
+            <div className="book-authors">{book.authors}</div>
+        </div>
     );
 }
 
@@ -36,10 +29,9 @@ Book.propTypes = {
         link: PropTypes.string,
         title: PropTypes.string,
         authors: PropTypes.array,
-        width: PropTypes.string,
-        height: PropTypes.string,
         shelf: PropTypes.string,
     }).isRequired,
+    onChangeShelf: PropTypes.func.isRequired,
 };
 
 export default Book;
