@@ -41,6 +41,7 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
                 <div className="search-books-input-wrapper">
                     <input
                         id="search-input"
+                        name="search-text"
                         type="text"
                         value={query}
                         onChange={(e) => handleSearch(e.target.value)}

@@ -19,8 +19,9 @@ const Book = ({ book, onChangeShelf }) => {
                 </Link>
                 
                 <BookShelfChanger
-                    currentShelf={book.shelf}
+                    currentShelf={book.shelf || "none"}
                     onChange={(newShelf) => onChangeShelf(book, newShelf)}
+                    bookId={book.id}
                 />
             </div>
             <div className="book-title">{book.title}</div>
