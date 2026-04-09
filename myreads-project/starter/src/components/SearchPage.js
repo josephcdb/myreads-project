@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Book from './Book';
 import * as BooksAPI from "../BooksAPI";
 
-const SearchPage = ({ onClose, onChangeShelf, myBooks }) => {
+const SearchPage = ({ onChangeShelf, myBooks }) => {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
 
@@ -35,7 +35,7 @@ const SearchPage = ({ onClose, onChangeShelf, myBooks }) => {
     return (
         <div className="search-books">
             <div className="search-books-bar">
-                <button className="close-search" onClick={onClose}>
+                <button className="close-search" onClick={() => window.history.back()}>
                     Close
                 </button>
                 <div className="search-books-input-wrapper">
@@ -62,7 +62,6 @@ const SearchPage = ({ onClose, onChangeShelf, myBooks }) => {
 }
 
 SearchPage.propTypes = {
-    onClose: PropTypes.func.isRequired,
     onChangeShelf: PropTypes.func.isRequired,
     myBooks: PropTypes.array.isRequired,
 };

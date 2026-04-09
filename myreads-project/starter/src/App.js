@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Bookshelf from "./components/Bookshelf";
 import SearchPage from "./components/SearchPage";
+import BookDetail from "./components/BookDetail";
 import * as BooksAPI from "./BooksAPI";
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [showSearchPage, setShowSearchPage] = useState(false);
   const [books, setBooks] = useState([]);
 
   // Fetch all books from the BooksAPI and set the state with the books
@@ -31,29 +33,42 @@ function App() {
   };
 
   return (
-    <div className="app">
-      { showSearchPage ? 
-        (<SearchPage 
-          onClose={() => setShowSearchPage(false)}
-          onChangeShelf={handleChangeShelf}
-          myBooks={books}
-        />) :
-      (
-        <>
-          <div className="list-books">
-            <Header />
-            <div className="list-books-content">
-              <Bookshelf title="Currently Reading" books={currentlyReadingBooks} onChangeShelf={handleChangeShelf} />
-              <Bookshelf title="Want to Read" books={wantToReadBooks} onChangeShelf={handleChangeShelf} />
-              <Bookshelf title="Read" books={readBooks} onChangeShelf={handleChangeShelf} />
+    <Router>
+      <Routes>
+        {/* Main page */}
+        <Route path="/" element={
+            <div className="list-books">
+              <Header />
+              <div className="list-books-content">
+                <Bookshelf
+                  title="Currently Reading"
+                  books={currentlyReadingBooks}
+                  onChangeShelf={handleChangeShelf}
+                />
+                <Bookshelf
+                  title="Want to Read"
+                  books={wantToReadBooks}
+                  onChangeShelf={handleChangeShelf}
+                />
+                <Bookshelf
+                  title="Read"
+                  books={readBooks}
+                  onChangeShelf={handleChangeShelf}
+                />
+              </div>
+              <div className="open-search">
+                <button className="btn btn-primary" onClick={() => window.location.href = "/search"}>Add a book</button>
+              </div>
             </div>
-          </div>
-          <div className="open-search">
-            <button onClick={() => setShowSearchPage(!showSearchPage)}>Add a book</button>
-          </div>
-        </>
-      )}
-    </div>
+          }
+        />
+        {/* Search page */}
+        <Route path="/search" element={<SearchPage onChangeShelf={handleChangeShelf} myBooks={books} />} />
+
+        {/* Book Detail Page */}
+        <Route path="/book/:id" element={<BookDetail />} />
+      </Routes>
+    </Router>
   );
 }
 
