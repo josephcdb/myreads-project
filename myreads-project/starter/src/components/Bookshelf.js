@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Book from './Book';
 
-const Bookshelf = ({ title, books, onChangeShelf }) => {
+const BookShelf = ({ title, books, onChangeShelf }) => {
     return (
         <div className="bookshelf">
             <h2 className="bookshelf-title">{title}</h2>
@@ -18,10 +18,10 @@ const Bookshelf = ({ title, books, onChangeShelf }) => {
     );
 }
 
-Bookshelf.propTypes = {
+BookShelf.propTypes = {
     title: PropTypes.string.isRequired,
     books: PropTypes.array.isRequired,
     onChangeShelf: PropTypes.func.isRequired,
 };
 
-export default Bookshelf;
+export default BookShelf;

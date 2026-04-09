@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import Bookshelf from "./components/Bookshelf";
+import BookShelf from "./components/BookShelf";
 import SearchPage from "./components/SearchPage";
 import BookDetail from "./components/BookDetail";
 import * as BooksAPI from "./BooksAPI";
@@ -40,17 +40,17 @@ function App() {
             <div className="list-books">
               <Header />
               <div className="list-books-content">
-                <Bookshelf
+                <BookShelf
                   title="Currently Reading"
                   books={currentlyReadingBooks}
                   onChangeShelf={handleChangeShelf}
                 />
-                <Bookshelf
+                <BookShelf
                   title="Want to Read"
                   books={wantToReadBooks}
                   onChangeShelf={handleChangeShelf}
                 />
-                <Bookshelf
+                <BookShelf
                   title="Read"
                   books={readBooks}
                   onChangeShelf={handleChangeShelf}
