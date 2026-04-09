@@ -7,9 +7,10 @@ const SearchPage = ({ onClose, onChangeShelf, myBooks }) => {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
 
+    // Update the shelf of a book in the search results based on the user's existing books
     const updateBookShelf = (book) => {
-        const existing = myBooks.find((b) => b.id === book.id);
-        return existing || { ...book, shelf: "none" };
+        const existingBook = myBooks.find((b) => b.id === book.id);
+        return existingBook || { ...book, shelf: "none" };
     };
 
     const handleSearch = (value) => {
@@ -20,6 +21,7 @@ const SearchPage = ({ onClose, onChangeShelf, myBooks }) => {
             return;
         }
 
+        // Search for books using the BooksAPI and update the results state with the search results
         BooksAPI.search(value, 20).then((books) => {
             if (books && !books.error) {
                 const updatedResults = books.map(updateBookShelf);
@@ -38,6 +40,7 @@ const SearchPage = ({ onClose, onChangeShelf, myBooks }) => {
                 </button>
                 <div className="search-books-input-wrapper">
                     <input
+                        id="search-input"
                         type="text"
                         value={query}
                         onChange={(e) => handleSearch(e.target.value)}

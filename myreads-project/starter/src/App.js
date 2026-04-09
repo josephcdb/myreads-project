@@ -9,6 +9,7 @@ function App() {
   const [showSearchPage, setShowSearchPage] = useState(false);
   const [books, setBooks] = useState([]);
 
+  // Fetch all books from the BooksAPI and set the state with the books
   useEffect(() => {
     BooksAPI.getAll().then((books) => {
       setBooks(books);
@@ -19,9 +20,12 @@ function App() {
   const wantToReadBooks = books.filter(book => book.shelf === "wantToRead");
   const readBooks = books.filter(book => book.shelf === "read");
 
+  // Handle changing the shelf of a book and update the state
   const handleChangeShelf = (book, newShelf) => {
     BooksAPI.update(book, newShelf).then(() => {
       const updated = books.filter((b) => b.id !== book.id);
+
+      // If the new shelf is not "none", add the book back to the state with the updated shelf
       setBooks([...updated, { ...book, shelf: newShelf }]);
     });
   };
