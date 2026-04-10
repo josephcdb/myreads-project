@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as BooksAPI from "../../BooksAPI";
+import "./BookDetail.css";
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -14,13 +15,13 @@ const BookDetail = () => {
   if (!book) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="bookdetail">
       <h1>{book.title}</h1>
       <img src={book.imageLinks?.thumbnail} alt={book.title} />
-      <p>Author: {book.authors?.join(", ")}</p>
-      <p>{book.description}</p>
-      <p>Published: {book.publishedDate}</p>
-      <p>Average Rating: {book.averageRating}</p>
+      <p className="bookdetail-author">Author: {book.authors?.join(", ")}</p>
+      <p className="bookdetail-description">{book.description}</p>
+      <p className="bookdetail-published">Published: {book.publishedDate}</p>
+      <p className="bookdetail-rating">Average Rating: {book.averageRating}</p>
       <button className="btn btn-primary" onClick={() => navigate("/")}>Return back to Main</button>
     </div>
   );

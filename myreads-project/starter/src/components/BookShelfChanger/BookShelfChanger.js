@@ -3,7 +3,7 @@ import "./BookShelfChanger.css";
 
 const BookShelfChanger = ({ onChange, currentShelf, bookId }) => {
     return (
-        <div className="book-shelf-changer">
+        <div className="bookshelfchanger">
             <select id={`shelf-${bookId}`} name={`shelf-${bookId}`} value={currentShelf} onChange={(e) => onChange(e.target.value)}>
                 <option value="none" disabled>
                     Move to...

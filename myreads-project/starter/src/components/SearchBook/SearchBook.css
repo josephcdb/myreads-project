@@ -1,5 +1,5 @@
-/* search books */
-.searchbooks-bar {
+/* searchbooks */
+.searchbooks {
   position: fixed;
   width: 100%;
   top: 0;
@@ -14,7 +14,7 @@
   background: #e9e;
 }
 
-.searchbooks-bar input {
+.searchbooks-inputBar {
   width: 100%;
   padding: 15px 10px;
   font-size: 1.25em;

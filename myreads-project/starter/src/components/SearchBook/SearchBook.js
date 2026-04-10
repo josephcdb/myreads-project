@@ -36,8 +36,8 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
     };
 
     return (
-        <div>
-            <div className="searchbooks-bar">
+        <>
+            <div className="searchbooks">
                 <button className="searchbooks-close" onClick={() => navigate("/")}>
                     Close
                 </button>
@@ -45,6 +45,7 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
                     <input
                         id="searchbooks-input"
                         name="searchbooks-text"
+                        className="searchbooks-inputBar"
                         type="text"
                         value={query}
                         onChange={(e) => handleSearch(e.target.value)}
@@ -61,7 +62,7 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
                     ))}
                 </ol>
             </div>
-        </div>
+        </>
     );
 }
 

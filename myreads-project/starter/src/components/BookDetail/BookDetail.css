@@ -1,0 +1,22 @@
+/* bookdetail */
+.bookdetail {
+  padding: 20px;
+}
+
+.bookdetail h1 {
+  margin-bottom: 20px;
+}
+
+.bookdetail img {
+  float: left;
+  margin-right: 20px;
+  width: 128px;
+  height: 193px;
+}
+
+.bookdetail-author,
+.bookdetail-description,
+.bookdetail-published,
+.bookdetail-rating {
+    margin-bottom: 10px;
+}

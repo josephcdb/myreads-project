@@ -18,6 +18,7 @@ function App() {
     });
   }, []);
   
+  // Filter the selected books (currently reading, want to read, and read) from the state to pass to the BookShelf component
   const currentlyReadingBooks = books.filter(book => book.shelf === "currentlyReading");
   const wantToReadBooks = books.filter(book => book.shelf === "wantToRead");
   const readBooks = books.filter(book => book.shelf === "read");
@@ -35,7 +36,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Main page */}
+        {/* Main Page */}
         <Route path="/" element={
             <div>
               <Header />
@@ -57,12 +58,12 @@ function App() {
                 />
               </div>
               <div className="booklist-addButton">
-                <button className="btn btn-primary" onClick={() => window.location.href = "/search"}>Add a book</button>
+                <a href="/search">Add a book</a>
               </div>
             </div>
           }
         />
-        {/* Search page */}
+        {/* Book Search */}
         <Route path="/search" element={<SearchBook onChangeShelf={handleChangeShelf} myBooks={books} />} />
 
         {/* Book Detail Page */}
