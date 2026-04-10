@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import BookShelf from "./components/BookShelf/BookShelf";
 import BookDetail from "./components/BookDetail/BookDetail";
 import SearchBook from "./components/SearchBook/SearchBook";
@@ -58,7 +58,7 @@ function App() {
                 />
               </div>
               <div className="booklist-addButton">
-                <a href="/search">Add a book</a>
+                <Link to="/search">Add a book</Link>
               </div>
             </div>
           }
