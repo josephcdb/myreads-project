@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import "./BookShelfChanger.css";
 
 const BookShelfChanger = ({ onChange, currentShelf, bookId }) => {
     return (

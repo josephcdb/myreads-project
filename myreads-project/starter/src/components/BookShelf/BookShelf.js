@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import Book from '../Book/Book';
+import "./BookShelf.css";
 
 const BookShelf = ({ title, books, onChangeShelf }) => {
     return (
         <div className="bookshelf">
             <h2 className="bookshelf-title">{title}</h2>
             <div className="bookshelf-books">
-                <ol className="books-grid">
+                <ol className="bookshelf-grid">
                     {books.map((book) => (
                         <li key={book.id}>
                             <Book book={book} onChangeShelf={onChangeShelf} />

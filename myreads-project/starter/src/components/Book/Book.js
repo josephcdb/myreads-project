@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import BookShelfChanger from "../BookShelfChanger/BookShelfChanger";
 import { Link } from "react-router-dom";
+import "./Book.css";
 
 const Book = ({ book, onChangeShelf }) => {
     return (

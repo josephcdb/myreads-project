@@ -1,7 +1,9 @@
+import "./Header.css";
+
 const Header = () => {
     return (
         <div>
-            <div className="list-books-title">
+            <div className="header-title">
                 <h1>MyReads</h1>
             </div>
         </div>

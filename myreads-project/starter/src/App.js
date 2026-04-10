@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header/Header";
 import BookShelf from "./components/BookShelf/BookShelf";
-import SearchPage from "./components/SearchBook/SearchPage";
 import BookDetail from "./components/BookDetail/BookDetail";
+import SearchBook from "./components/SearchBook/SearchBook";
+import Header from "./components/Header/Header";
 import * as BooksAPI from "./BooksAPI";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,9 +37,9 @@ function App() {
       <Routes>
         {/* Main page */}
         <Route path="/" element={
-            <div className="list-books">
+            <div>
               <Header />
-              <div className="list-books-content">
+              <div className="booklist-content">
                 <BookShelf
                   title="Currently Reading"
                   books={currentlyReadingBooks}
@@ -56,14 +56,14 @@ function App() {
                   onChangeShelf={handleChangeShelf}
                 />
               </div>
-              <div className="open-search">
+              <div className="booklist-addButton">
                 <button className="btn btn-primary" onClick={() => window.location.href = "/search"}>Add a book</button>
               </div>
             </div>
           }
         />
         {/* Search page */}
-        <Route path="/search" element={<SearchPage onChangeShelf={handleChangeShelf} myBooks={books} />} />
+        <Route path="/search" element={<SearchBook onChangeShelf={handleChangeShelf} myBooks={books} />} />
 
         {/* Book Detail Page */}
         <Route path="/book/:id" element={<BookDetail />} />

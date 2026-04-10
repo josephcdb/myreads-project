@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Book from '../Book/Book';
 import * as BooksAPI from "../../BooksAPI";
+import "./SearchBook.css";
 
 const SearchPage = ({ onChangeShelf, myBooks }) => {
     const [query, setQuery] = useState("");
@@ -35,15 +36,15 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
     };
 
     return (
-        <div className="search-books">
-            <div className="search-books-bar">
-                <button className="close-search" onClick={() => navigate("/")}>
+        <div>
+            <div className="searchbooks-bar">
+                <button className="searchbooks-close" onClick={() => navigate("/")}>
                     Close
                 </button>
-                <div className="search-books-input-wrapper">
+                <div className="searchbooks-inputWrapper">
                     <input
-                        id="search-input"
-                        name="search-text"
+                        id="searchbooks-input"
+                        name="searchbooks-text"
                         type="text"
                         value={query}
                         onChange={(e) => handleSearch(e.target.value)}
@@ -51,8 +52,8 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
                     />
                 </div>
             </div>
-            <div className="search-books-results">
-                <ol className="books-grid">
+            <div className="searchbooks-results">
+                <ol className="searchbooks-grid">
                     {results.map((book) => (
                         <li key={book.id}>
                             <Book book={book} onChangeShelf={onChangeShelf} />
