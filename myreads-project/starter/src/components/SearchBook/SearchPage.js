@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
-import Book from './Book';
-import * as BooksAPI from "../BooksAPI";
+import Book from '../Book/Book';
+import * as BooksAPI from "../../BooksAPI";
 
 const SearchPage = ({ onChangeShelf, myBooks }) => {
     const [query, setQuery] = useState("");

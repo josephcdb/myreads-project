@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Book from './Book';
+import Book from '../Book/Book';
 
 const BookShelf = ({ title, books, onChangeShelf }) => {
     return (

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import BookShelf from "./components/BookShelf";
-import SearchPage from "./components/SearchPage";
-import BookDetail from "./components/BookDetail";
+import Header from "./components/Header/Header";
+import BookShelf from "./components/BookShelf/BookShelf";
+import SearchPage from "./components/SearchBook/SearchPage";
+import BookDetail from "./components/BookDetail/BookDetail";
 import * as BooksAPI from "./BooksAPI";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
