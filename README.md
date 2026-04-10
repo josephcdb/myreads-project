@@ -8,8 +8,10 @@ Of course, you are free to start this project from scratch if you wish! Just be 
 
 To get started developing right away:
 
-- install all project dependencies with `npm install`
-- start the development server with `npm start`
+- please go to starter folder
+- please install all project dependencies with `npm install`
+- please do not use `npm audit fix --force` because it will break changes i.e. "react-scripts": "^0.0.0" instead of "react-scripts": "^5.0.1",
+- please start the development server with `npm start`
 
 ## What You're Getting
 
