@@ -8,12 +8,15 @@ import "./SearchBook.css";
 const SearchPage = ({ onChangeShelf, myBooks }) => {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
+    const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
     // Update the shelf of a book in the search results based on the user's existing books
     const updateBookShelf = (book) => {
         const existingBook = myBooks.find((b) => b.id === book.id);
-        return existingBook || { ...book, shelf: "none" };
+        return existingBook
+            ? { ...book, shelf: existingBook.shelf }
+            : { ...book, shelf: "none" };
     };
 
     const handleSearch = (value) => {
@@ -35,6 +38,23 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
         });
     };
 
+    const handleShelfChange = (book, shelf) => {
+        onChangeShelf(book, shelf);
+
+        // update local search results immediately
+        setResults((prevResults) =>
+            prevResults.map((b) =>
+                b.id === book.id ? { ...b, shelf } : b
+            )
+        );
+
+        // Show notification message
+        setMessage(`"${book.title}" added to ${shelf} section on main page`);
+
+        // Clear after 4 seconds
+        setTimeout(() => setMessage(""), 4000);
+    };
+
     return (
         <>
             <div className="searchbooks">
@@ -53,11 +73,19 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
                     />
                 </div>
             </div>
+
+            {/* Show notification message when a book is added on main page */}
+            {message && (
+                <div className="searchbooks-notification">
+                    {message}
+                </div>
+            )}
+
             <div className="searchbooks-results">
                 <ol className="searchbooks-grid">
                     {results.map((book) => (
                         <li key={book.id}>
-                            <Book book={book} onChangeShelf={onChangeShelf} />
+                            <Book book={book} onChangeShelf={handleShelfChange} />
                         </li>
                     ))}
                 </ol>
