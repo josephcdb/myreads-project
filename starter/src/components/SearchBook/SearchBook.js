@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Book from '../Book/Book';
@@ -10,6 +10,8 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
     const [results, setResults] = useState([]);
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
+    const timeoutRef = useRef(null);
+    const currentQuery = useRef("");
 
     // Update the shelf of a book in the search results based on the user's existing books
     const updateBookShelf = (book) => {
@@ -19,6 +21,7 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
             : { ...book, shelf: "none" };
     };
 
+    // Update search results when myBooks changes to reflect any shelf changes on the main page
     useEffect(() => {
         setResults((prevResults) =>
             prevResults.map((book) => {
@@ -30,8 +33,18 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
         );
     }, [myBooks]);
 
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
+    }, []);
+
     const handleSearch = (value) => {
         setQuery(value);
+        currentQuery.current = value;
 
         if (!value) {
             setResults([]);
@@ -40,6 +53,9 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
 
         // Search for books using the BooksAPI and update the results state with the search results
         BooksAPI.search(value, 20).then((books) => {
+            // Prevent state update if component is unmounted
+            if (currentQuery.current !== value) return;
+
             if (books && !books.error) {
                 const updatedResults = books.map(updateBookShelf);
                 setResults(updatedResults);
@@ -67,7 +83,13 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
         }
 
         // Clear after 4 seconds
-        setTimeout(() => setMessage(""), 4000);
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+
+        timeoutRef.current = setTimeout(() => {
+            setMessage("");
+        }, 4000);
     };
 
     return (
