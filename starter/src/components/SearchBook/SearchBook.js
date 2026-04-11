@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Book from '../Book/Book';
@@ -18,6 +18,17 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
             ? { ...book, shelf: existingBook.shelf }
             : { ...book, shelf: "none" };
     };
+
+    useEffect(() => {
+        setResults((prevResults) =>
+            prevResults.map((book) => {
+                const existingBook = myBooks.find((b) => b.id === book.id);
+                return existingBook
+                    ? { ...book, shelf: existingBook.shelf }
+                    : { ...book, shelf: "none" };
+            })
+        );
+    }, [myBooks]);
 
     const handleSearch = (value) => {
         setQuery(value);
@@ -49,7 +60,11 @@ const SearchPage = ({ onChangeShelf, myBooks }) => {
         );
 
         // Show notification message
-        setMessage(`"${book.title}" added to ${shelf} section on main page`);
+        if (shelf === "none") {
+            setMessage(`"${book.title}" removed from shelf`);
+        } else {
+            setMessage(`"${book.title}" added to ${shelf} section`);
+        }
 
         // Clear after 4 seconds
         setTimeout(() => setMessage(""), 4000);

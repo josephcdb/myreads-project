@@ -28,6 +28,12 @@ function App() {
     BooksAPI.update(book, newShelf).then(() => {
       const updated = books.filter((b) => b.id !== book.id);
 
+      // If the new shelf is "none", remove this book from the shelf
+      if (newShelf === "none") {
+        setBooks(updated);
+        return;
+      }
+
       // If the new shelf is not "none", add the book back to the state with the updated shelf
       setBooks([...updated, { ...book, shelf: newShelf }]);
     });
