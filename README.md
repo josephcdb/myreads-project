@@ -1,19 +1,29 @@
-# MyReads Project
+# MyReads Project Description
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+This is my completed project for the final assessment.
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) to bootstrap the project.
+A React bookshelf application that allows users to organize books into different shelves and search for new books using the Books API.
 
-## TL;DR
+## Features
+The user can:
+- Organize books into the selected shelves (Currently Reading, Want to Read, Read)
+- Search for any books by title, author, or ISBN on search result page
+- Move the selected books between shelves in real time
+- Remove the selected book if the user chooses "None" option on main page
+- Select any option (Currently Reading, Want to Read, Read) of any book on search result page, a message notification will appear informing the user about it
+- Remove books using the "None" option and it can update on both main and search pages
+- Click the book image to redirect to book detail page for more information
 
-To get started developing right away:
+## Installation Steps
 
-- please go to starter folder
-- please install all project dependencies with `npm install`
-- please do not use `npm audit fix --force` because it will break changes i.e. "react-scripts": "^0.0.0" instead of "react-scripts": "^5.0.1",
-- please start the development server with `npm start`
+1. Clone the repository
+2. cd starter
+3. Run `npm install` to install all project dependencies
+4. Run `npm start` to run the server
 
-## What You're Getting
+Note: Please do not use `npm audit fix --force` because it can break dependencies changes e.g. "react-scripts": "^0.0.0" instead of "react-scripts": "^5.0.1"
+
+## Project Structure
 
 ```bash
 ├──starter
@@ -55,8 +65,6 @@ To get started developing right away:
         ├── index.css # Global styles. You probably won't need to change anything here.
         └── index.js # You should not need to modify this file. It is used for DOM rendering only.
 ```
-
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
 
 ## Backend Server
 
